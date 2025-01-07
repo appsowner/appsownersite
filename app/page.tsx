@@ -2,10 +2,12 @@
 
 import { useState } from 'react';
 import { ArrowRight, Brain, Cpu, Bot, Workflow, Mail, Sparkles } from "lucide-react";
-import Image from 'next/image';
 
 export default function Home() {
   const [hoveredService, setHoveredService] = useState<number | null>(null);
+  const whatsappNumber = "+56929042999"; // Reemplaza con tu número real
+  const whatsappMessage = "Hola, me gustaría obtener más información sobre sus servicios de automatización.";
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
   const services = [
     { 
@@ -22,33 +24,16 @@ export default function Home() {
       icon: <Bot className="w-8 h-8" />, 
       title: 'Chatbots & Virtual Assistants', 
       desc: 'AI-powered conversational interfaces' 
-    }  
+    },
+    { 
+      icon: <Cpu className="w-8 h-8" />, 
+      title: 'Machine Learning', 
+      desc: 'Data-driven insights and predictions' 
+    }
   ];
 
   return (
     <main className="min-h-screen bg-background">
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md z-50 border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
-            <Image
-              src="/logo.png"
-              alt="AppsOwner"
-              width={180}
-              height={180}
-              className="w-auto h-8"
-            />
-            <a 
-              href="mailto:contacto@appsowner.com"
-              className="text-primary hover:text-primary/80 transition-colors"
-            >
-              <Mail className="w-5 h-5" />
-            </a>
-          </div>
-        </div>
-      </nav>
-
-      {/* Hero Section */}
       <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-background via-primary/5 to-secondary/5 pt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl">
@@ -59,10 +44,15 @@ export default function Home() {
               Transform your business with cutting-edge AI automation solutions that drive efficiency and innovation
             </p>
             <div className="flex gap-4">
-              <button className="group bg-primary text-white px-6 py-3 rounded-full font-medium flex items-center gap-2 hover:bg-primary/90 transition-all">
+              <a 
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group bg-primary text-white px-6 py-3 rounded-full font-medium flex items-center gap-2 hover:bg-primary/90 transition-all"
+              >
                 Get Started
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
+              </a>
               <a 
                 href="mailto:contacto@appsowner.com"
                 className="group px-6 py-3 rounded-full font-medium flex items-center gap-2 border border-primary/20 hover:border-primary/40 transition-all"
@@ -77,7 +67,7 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section className="py-32 bg-gradient-to-b from-white to-secondary/5">
+      <section className="py-32 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
             <h2 className="text-3xl font-bold mb-4">Our Services</h2>
@@ -89,7 +79,7 @@ export default function Home() {
             {services.map((service, index) => (
               <div
                 key={index}
-                className="relative p-8 rounded-xl bg-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                className="relative p-8 rounded-xl bg-background shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
                 onMouseEnter={() => setHoveredService(index)}
                 onMouseLeave={() => setHoveredService(null)}
               >
@@ -98,7 +88,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
                 <p className="text-muted-foreground">{service.desc}</p>
-                <div className={`absolute bottom-0 left-0 h-1 bg-secondary transition-all duration-300 rounded-b-xl
+                <div className={`absolute bottom-0 left-0 h-1 bg-primary transition-all duration-300 rounded-b-xl
                   ${hoveredService === index ? 'w-full' : 'w-0'}`} />
               </div>
             ))}
@@ -116,20 +106,20 @@ export default function Home() {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="p-6 rounded-xl bg-primary/5 border border-primary/10">
-              <h3 className="text-xl font-semibold mb-4 text-primary">Expertise</h3>
+            <div className="p-6 rounded-xl bg-muted/30">
+              <h3 className="text-xl font-semibold mb-4">Expertise</h3>
               <p className="text-muted-foreground">
                 Our team of AI specialists brings years of experience in developing custom automation solutions
               </p>
             </div>
-            <div className="p-6 rounded-xl bg-secondary/5 border border-secondary/10">
-              <h3 className="text-xl font-semibold mb-4 text-secondary">Innovation</h3>
+            <div className="p-6 rounded-xl bg-muted/30">
+              <h3 className="text-xl font-semibold mb-4">Innovation</h3>
               <p className="text-muted-foreground">
                 We stay at the forefront of AI technology to deliver cutting-edge solutions
               </p>
             </div>
-            <div className="p-6 rounded-xl bg-primary/5 border border-primary/10">
-              <h3 className="text-xl font-semibold mb-4 text-primary">Results</h3>
+            <div className="p-6 rounded-xl bg-muted/30">
+              <h3 className="text-xl font-semibold mb-4">Results</h3>
               <p className="text-muted-foreground">
                 Our solutions deliver measurable improvements in efficiency and productivity
               </p>
@@ -139,16 +129,16 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-32 bg-gradient-to-b from-white to-secondary/5">
+      <section className="py-32 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <Sparkles className="w-12 h-12 text-secondary mx-auto mb-6" />
+          <Sparkles className="w-12 h-12 text-primary mx-auto mb-6" />
           <h2 className="text-4xl font-bold mb-4">Ready to Automate?</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
             Let's discuss how we can transform your business with intelligent automation
           </p>
           <a 
             href="mailto:contacto@appsowner.com"
-            className="group bg-primary text-white px-8 py-4 rounded-full font-medium flex items-center gap-2 hover:bg-primary/90 transition-all mx-auto w-fit"
+            className="group bg-primary text-white px-8 py-4 rounded-full font-medium flex items-center gap-2 hover:opacity-90 transition-all mx-auto w-fit"
           >
             Contact Us
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -159,16 +149,9 @@ export default function Home() {
       {/* Footer */}
       <footer className="py-12 border-t">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <Image
-              src="/logo.png"
-              alt="AppsOwner"
-              width={140}
-              height={30}
-              className="w-auto h-6 mx-auto mb-4"
-            />
-            <p className="text-muted-foreground">© {new Date().getFullYear()} AppsOwner. All rights reserved.</p>
-            <a href="mailto:contacto@appsowner.com" className="text-primary hover:text-primary/80 transition-colors mt-2 inline-block">
+          <div className="text-center text-muted-foreground">
+            <p>© {new Date().getFullYear()} AppsOwner. All rights reserved.</p>
+            <a href="mailto:contacto@appsowner.com" className="text-primary hover:underline mt-2 inline-block">
               contacto@appsowner.com
             </a>
           </div>
