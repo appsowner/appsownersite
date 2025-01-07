@@ -27,8 +27,8 @@ export default function Home() {
     },
     { 
       icon: <Cpu className="w-8 h-8" />, 
-      title: 'Machine Learning', 
-      desc: 'Data-driven insights and predictions' 
+      title: 'LLM Predictions & Analytics', 
+      desc: 'Harness the power of large language models for advanced insights and predictions' 
     }
   ];
 
@@ -37,6 +37,11 @@ export default function Home() {
       <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-background via-primary/5 to-secondary/5 pt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl">
+               <img 
+        src="/logo.png" 
+        alt="AppsOwner Logo" 
+        className="mx-auto mb-6 w-24 h-auto" 
+      />
             <h1 className="text-6xl sm:text-7xl font-bold tracking-tight mb-6">
               Intelligent <span className="text-primary">Automation</span> for Your <span className="text-secondary">Business</span>
             </h1>
