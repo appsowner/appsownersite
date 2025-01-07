@@ -22,12 +22,7 @@ export default function Home() {
       icon: <Bot className="w-8 h-8" />, 
       title: 'Chatbots & Virtual Assistants', 
       desc: 'AI-powered conversational interfaces' 
-    },
-    { 
-      icon: <Cpu className="w-8 h-8" />, 
-      title: 'Machine Learning', 
-      desc: 'Data-driven insights and predictions' 
-    }
+    }  
   ];
 
   return (
@@ -40,7 +35,7 @@ export default function Home() {
               src="/logo.png"
               alt="AppsOwner"
               width={180}
-              height={40}
+              height={180}
               className="w-auto h-8"
             />
             <a 
