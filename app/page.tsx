@@ -38,9 +38,9 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl">
                <img 
-        src="/logo.png" 
+        src="/logo_t.png" 
         alt="AppsOwner Logo" 
-        className="mx-auto mb-6 w-24 h-auto" 
+        className="mx-auto mb-6 w-48 h-auto" 
       />
             <h1 className="text-6xl sm:text-7xl font-bold tracking-tight mb-6">
               Intelligent <span className="text-primary">Automation</span> for Your <span className="text-secondary">Business</span>
