@@ -14,9 +14,16 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+  <html lang="en">
+      <head>
+        {/* Configuración del favicon */}
+        <link rel="icon" type="image/png" sizes="32x32" href="/logo.png" />
+        <title>AppsOwner - AI Automation Services</title>
+        <meta name="description" content="Transforming businesses through intelligent automation solutions" />
+      </head>
+      <body className={inter.className}>
+        {children}
+      </body>
     </html>
   );
 }
