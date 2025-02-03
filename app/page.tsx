@@ -2,6 +2,11 @@
 
 import { useState } from 'react';
 import { ArrowRight, Brain, Cpu, Bot, Workflow, Mail, Sparkles } from "lucide-react";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/effect-fade';
+import 'swiper/css/autoplay';
+import { EffectFade, Autoplay } from 'swiper';
 
 export default function Home() {
   const [hoveredService, setHoveredService] = useState<number | null>(null);
@@ -34,44 +39,52 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-background">
-      <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-background via-primary/5 to-secondary/5 pt-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-3xl">
-               <img 
-        src="/logo_t.png" 
-        alt="AppsOwner Logo" 
-        className="mx-auto mb-6 w-48 h-auto" 
-      />
-            <h1 className="text-6xl sm:text-7xl font-bold tracking-tight mb-6">
-              Intelligent <span className="text-primary">Automation</span> for Your <span className="text-secondary">Business</span>
-            </h1>
-            <p className="text-xl text-muted-foreground mb-8">
-              Transform your business with cutting-edge AI automation solutions that drive efficiency and innovation
-            </p>
-            <div className="flex gap-4">
-              <a 
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group bg-primary text-white px-6 py-3 rounded-full font-medium flex items-center gap-2 hover:bg-primary/90 transition-all"
-              >
-                Get Started
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
-              <a 
-                href="mailto:contacto@appsowner.com"
-                className="group px-6 py-3 rounded-full font-medium flex items-center gap-2 border border-primary/20 hover:border-primary/40 transition-all"
-              >
-                <Mail className="w-4 h-4" />
-                Contact Us
-              </a>
-            </div>
-          </div>
-        </div>
+      <section className="relative min-h-screen flex items-center overflow-hidden">
+        <Swiper
+          effect="fade"
+          autoplay={{
+            delay: 4000,
+            disableOnInteraction: false,
+          }}
+          modules={[EffectFade, Autoplay]}
+          className="mySwiper w-full h-full"
+        >
+          <SwiperSlide>
+            <div
+              className="w-full h-full bg-cover bg-center"
+              style={{
+                backgroundImage: 'url("/slide1.jpg")',
+              }}
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <div
+              className="w-full h-full bg-cover bg-center"
+              style={{
+                backgroundImage: 'url("/slide2.jpg")',
+              }}
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <div
+              className="w-full h-full bg-cover bg-center"
+              style={{
+                backgroundImage: 'url("/slide3.jpg")',
+              }}
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <div
+              className="w-full h-full bg-cover bg-center"
+              style={{
+                backgroundImage: 'url("/slide4.jpg")',
+              }}
+            />
+          </SwiperSlide>
+        </Swiper>
         <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1/2 h-3/4 bg-gradient-to-l from-secondary/20 to-transparent rounded-l-full blur-3xl" />
       </section>
 
-      {/* Services Section */}
       <section className="py-32 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
@@ -101,7 +114,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why Choose Us Section */}
       <section className="py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
@@ -133,7 +145,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact Section */}
       <section className="py-32 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Sparkles className="w-12 h-12 text-primary mx-auto mb-6" />
@@ -151,7 +162,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="py-12 border-t">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center text-muted-foreground">
