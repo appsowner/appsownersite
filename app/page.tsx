@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from 'react';
-import { ArrowRight, Brain, Cpu, Bot, Workflow, Mail, Sparkles } from "lucide-react";
+import { ArrowRight, Brain, Cpu, Bot, Workflow, Mail, Sparkles,Book } from "lucide-react";
 
 export default function Home() {
   const [hoveredService, setHoveredService] = useState<number | null>(null);
