@@ -26,7 +26,7 @@ export default function Home() {
       desc: 'Aprovecha el poder de los modelos de lenguaje grande para obtener información avanzada y predicciones' 
     },
     {
-      icon: <Cpu className="w-8 h-8" />,
+      icon: <Book className="w-8 h-8" />,
       title: 'Academy IA',
       desc: 'Aprende a construir e integrar automatizaciones para negocios con soluciones inteligentes y optimizadas para mejorar la eficiencia y productividad de tu empresa.'
     }
