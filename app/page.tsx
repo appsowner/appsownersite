@@ -43,12 +43,15 @@ export default function Home() {
         alt="AppsOwner Logo" 
         className="mx-auto mb-6 w-48 h-auto" 
       />
-            <h1 className="text-6xl sm:text-7xl font-bold tracking-tight mb-6">
-              Automatización <span className="text-primary">Inteligente</span> para tu <span className="text-secondary">Negocio.</span>
-            </h1>
-            <p className="text-xl text-muted-foreground mb-8">
-              Transforma tu negocio con soluciones de automatización de IA de vanguardia que impulsan la eficiencia y la innovación.
-            </p>
+          <div className="w-full max-w-[90%] sm:max-w-[80%] md:max-w-[70%] mx-auto text-center">
+  <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight mb-6 break-words">
+    Automatización <span className="text-primary">Inteligente</span> para tu <span className="text-secondary">Negocio.</span>
+  </h1>
+  <p className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-[90%] sm:max-w-[80%] md:max-w-[70%] mx-auto">
+    Transforma tu negocio con soluciones de automatización de IA de vanguardia que impulsan la eficiencia y la innovación.
+  </p>
+</div>
+
             <div className="flex gap-4">
               <a 
                 href={whatsappUrl}
