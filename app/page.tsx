@@ -146,7 +146,7 @@ export default function Home() {
       <footer className="py-12 border-t">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center text-muted-foreground">
-            <p>© {new Date().getFullYear()} AppsOwner. All rights reserved.</p>
+            <p>© 2022 AO AppsOwner Spa. All rights reserved.</p>
             <a href="mailto:contacto@appsowner.com" className="text-primary hover:underline mt-2 inline-block">
               contacto@appsowner.com
             </a>
