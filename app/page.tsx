@@ -5,7 +5,7 @@ import { ArrowRight, Brain, Cpu, Bot, Workflow, Mail, Sparkles,Book } from "luci
 
 export default function Home() {
   const [hoveredService, setHoveredService] = useState<number | null>(null);
-  const whatsappNumber = "+56929042999"; // Reemplaza con tu número real
+  const whatsappNumber = "+56920927406"; // Reemplaza con tu número real
   const whatsappMessage = "Hola, me gustaría obtener más información sobre sus servicios de IA y Academia.";
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
@@ -43,6 +43,10 @@ export default function Home() {
         alt="AppsOwner Logo" 
         className="mx-auto mb-6 w-48 h-auto" 
       />
+             <p className="text-center text-lg sm:text-xl md:text-2xl font-medium mb-6">
+                <span className="text-primary">Innovacion</span> del <span className="text-secondary">futuro</span> presente hoy
+              </p>
+            
           <div className="w-full max-w-[90%] sm:max-w-[80%] md:max-w-[70%] mx-auto text-center">
   <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight mb-6 break-words">
     Automatización <span className="text-primary">Inteligente</span> para tu <span className="text-secondary">Negocio.</span>
