@@ -39,15 +39,16 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl">
                <div className="text-center">
+                 <p className="text-center text-sm sm:text-base font-medium mb-6 -mt-1">
+                  <span className="text-primary">Innovacion</span> del <span className="text-secondary">futuro</span> presente hoy
+                </p>
                 <img 
                   src="/logo_t.png" 
                   alt="AppsOwner Logo" 
                   className="mx-auto w-48 h-auto mb-0" 
                 />
                 {/* Slogan added here, smaller and right below the logo */}
-                <p className="text-center text-sm sm:text-base font-medium mb-6 -mt-1">
-                  <span className="text-primary">Innovacion</span> del <span className="text-secondary">futuro</span> presente hoy
-                </p>
+             
               </div>
               
           <div className="w-full max-w-[90%] sm:max-w-[80%] md:max-w-[70%] mx-auto text-center">
