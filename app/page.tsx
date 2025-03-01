@@ -5,7 +5,7 @@ import { ArrowRight, Brain, Cpu, Bot, Workflow, Mail, Sparkles, Book } from "luc
 
 export default function Home() {
   const [hoveredService, setHoveredService] = useState<number | null>(null);
-  const whatsappNumber = "+56929042999"; // Reemplaza con tu número real
+  const whatsappNumber = "+56920927406"; // Reemplaza con tu número real
   const whatsappMessage = "Hola, me gustaría obtener más información sobre sus servicios de IA y Academia.";
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
@@ -40,7 +40,7 @@ export default function Home() {
           <div className="max-w-3xl">
                <div className="text-center">
                  <p className="text-center text-sm sm:text-base font-medium mb-6 -mt-1">
-                  <span className="text-primary">Innovacion</span> del <span className="text-secondary">futuro</span> presente hoy
+                  <span className="text-primary">Innovación</span> del <span className="text-secondary">futuro</span> presente hoy
                 </p>
                 <img 
                   src="/logo_t.png" 
