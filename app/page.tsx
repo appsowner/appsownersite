@@ -37,15 +37,16 @@ export default function Home() {
     <main className="min-h-screen bg-background">
       <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-background via-primary/5 to-secondary/5 pt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-3xl">
-               <img 
-        src="/logo_t.png" 
-        alt="AppsOwner Logo" 
-        className="mx-auto mb-6 w-48 h-auto" 
-      />
-             <p className="text-center text-lg sm:text-xl md:text-2xl font-medium mb-6">
-                <span className="text-primary">Innovacion</span> del <span className="text-secondary">futuro</span> presente hoy
-              </p>
+       <div className="text-center">
+  <img 
+    src="/logo_t.png" 
+    alt="AppsOwner Logo" 
+    className="mx-auto w-48 h-auto mb-0" 
+  />
+  <p className="text-center text-sm sm:text-base font-medium mb-6 -mt-1">
+    <span className="text-primary">Innovacion</span> del <span className="text-secondary">futuro</span> presente hoy
+  </p>
+</div>
             
           <div className="w-full max-w-[90%] sm:max-w-[80%] md:max-w-[70%] mx-auto text-center">
   <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight mb-6 break-words">
