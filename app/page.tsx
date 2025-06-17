@@ -1,11 +1,21 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ArrowRight, Brain, Cpu, Bot, Workflow, Mail, Sparkles, Book } from "lucide-react";
+
+// Declare umami globally
+declare global {
+  interface Window {
+    umami?: {
+      track: (event: string, properties?: Record<string, any>) => void;
+      identify: (id: string) => void;
+    };
+  }
+}
 
 export default function Home() {
   const [hoveredService, setHoveredService] = useState<number | null>(null);
-  const whatsappNumber = "+56920927406"; // Reemplaza con tu número real
+  const whatsappNumber = "+56920927406";
   const whatsappMessage = "Hola, me gustaría obtener más información sobre sus servicios de IA y Academia.";
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
@@ -13,25 +23,98 @@ export default function Home() {
     { 
       icon: <Brain className="w-8 h-8" />, 
       title: 'Automatizacion con IA y flujos de trabajo', 
-      desc: 'Soluciones personalizadas de IA para automatizar los procesos con flujos de trabajo de tu negocio con automatización inteligente' 
+      desc: 'Soluciones personalizadas de IA para automatizar los procesos con flujos de trabajo de tu negocio con automatización inteligente',
+      slug: 'automatizacion-ia'
     },
     { 
       icon: <Bot className="w-8 h-8" />, 
       title: 'Chatbots y Asistentes Virtuales', 
-      desc: 'Interfaces conversacionales impulsadas por IA.' 
+      desc: 'Interfaces conversacionales impulsadas por IA.',
+      slug: 'chatbots'
     },
     { 
       icon: <Cpu className="w-8 h-8" />, 
       title: 'Predicciones y Análisis con Modelos de Lenguaje Grande (LLM).', 
-      desc: 'Aprovecha el poder de los modelos de lenguaje grande para obtener información avanzada y predicciones' 
+      desc: 'Aprovecha el poder de los modelos de lenguaje grande para obtener información avanzada y predicciones',
+      slug: 'predicciones-llm'
     },
     {
       icon: <Book className="w-8 h-8" />,
       title: 'Academy IA',
-      desc: 'Aprende a construir e integrar automatizaciones para negocios con soluciones inteligentes y optimizadas para mejorar la eficiencia y productividad de tu empresa.'
+      desc: 'Aprende a construir e integrar automatizaciones para negocios con soluciones inteligentes y optimizadas para mejorar la eficiencia y productividad de tu empresa.',
+      slug: 'academy-ia'
     }
-
   ];
+
+  // Analytics functions
+  const trackEvent = (event: string, properties?: Record<string, any>) => {
+    if (typeof window !== 'undefined' && window.umami) {
+      window.umami.track(event, properties);
+    }
+  };
+
+  // Track page view and session start
+  useEffect(() => {
+    trackEvent('homepage-loaded', {
+      referrer: document.referrer,
+      user_agent: navigator.userAgent,
+      viewport: `${window.innerWidth}x${window.innerHeight}`
+    });
+
+    // Track scroll depth
+    let maxScrollDepth = 0;
+    const trackScrollDepth = () => {
+      const scrollPercent = Math.round(
+        (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100
+      );
+      
+      if (scrollPercent > maxScrollDepth && scrollPercent % 25 === 0) {
+        maxScrollDepth = scrollPercent;
+        trackEvent('scroll-depth', {
+          depth: `${scrollPercent}%`,
+          page: 'homepage'
+        });
+      }
+    };
+
+    window.addEventListener('scroll', trackScrollDepth);
+    return () => window.removeEventListener('scroll', trackScrollDepth);
+  }, []);
+
+  // Track service card interactions
+  const handleServiceHover = (service: typeof services[0], index: number) => {
+    setHoveredService(index);
+    trackEvent('service-card-hover', {
+      service_name: service.title,
+      service_slug: service.slug,
+      card_position: index + 1
+    });
+  };
+
+  // Track WhatsApp CTA clicks
+  const handleWhatsAppClick = (location: string) => {
+    trackEvent('whatsapp-cta-clicked', {
+      cta_location: location,
+      cta_text: location === 'hero' ? 'Comencemos' : 'Contactar',
+      intent: 'lead-generation'
+    });
+  };
+
+  // Track email clicks
+  const handleEmailClick = () => {
+    trackEvent('email-clicked', {
+      email: 'contacto@appsowner.com',
+      location: 'footer'
+    });
+  };
+
+  // Track value proposition views
+  const handleValuePropView = (prop: string) => {
+    trackEvent('value-prop-viewed', {
+      proposition: prop,
+      section: 'why-choose-us'
+    });
+  };
 
   return (
     <main className="min-h-screen bg-background">
@@ -45,10 +128,9 @@ export default function Home() {
                 <img 
                   src="/logo_t.png" 
                   alt="AppsOwner Logo" 
-                  className="mx-auto w-48 h-auto mb-0" 
+                  className="mx-auto w-48 h-auto mb-0"
+                  onLoad={() => trackEvent('logo-loaded', { location: 'hero' })}
                 />
-                {/* Slogan added here, smaller and right below the logo */}
-             
               </div>
               
           <div className="w-full max-w-[90%] sm:max-w-[80%] md:max-w-[70%] mx-auto text-center">
@@ -65,12 +147,12 @@ export default function Home() {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => handleWhatsAppClick('hero')}
                 className="group bg-primary text-white px-6 py-3 rounded-full font-medium flex items-center gap-2 hover:bg-primary/90 transition-all"
               >
                Comencemos
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
-             
             </div>
           </div>
         </div>
@@ -90,9 +172,15 @@ export default function Home() {
             {services.map((service, index) => (
               <div
                 key={index}
-                className="relative p-8 rounded-xl bg-background shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-                onMouseEnter={() => setHoveredService(index)}
+                className="relative p-8 rounded-xl bg-background shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer"
+                onMouseEnter={() => handleServiceHover(service, index)}
                 onMouseLeave={() => setHoveredService(null)}
+                onClick={() => trackEvent('service-card-clicked', {
+                  service_name: service.title,
+                  service_slug: service.slug,
+                  card_position: index + 1,
+                  interaction_type: 'click'
+                })}
               >
                 <div className="mb-4 text-primary">
                   {service.icon}
@@ -117,19 +205,28 @@ export default function Home() {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="p-6 rounded-xl bg-muted/30">
+            <div 
+              className="p-6 rounded-xl bg-muted/30 hover:bg-muted/40 transition-colors cursor-pointer"
+              onClick={() => handleValuePropView('experiencia')}
+            >
               <h3 className="text-xl font-semibold mb-4">Experiencia</h3>
               <p className="text-muted-foreground">
                 Nuestro equipo de especialistas en IA aporta años de experiencia en el desarrollo de soluciones de automatización personalizadas.
               </p>
             </div>
-            <div className="p-6 rounded-xl bg-muted/30">
+            <div 
+              className="p-6 rounded-xl bg-muted/30 hover:bg-muted/40 transition-colors cursor-pointer"
+              onClick={() => handleValuePropView('innovacion')}
+            >
               <h3 className="text-xl font-semibold mb-4">Innovación</h3>
               <p className="text-muted-foreground">
                 Nos mantenemos a la vanguardia de la tecnología de IA para ofrecer soluciones innovadoras y de última generación.
               </p>
             </div>
-            <div className="p-6 rounded-xl bg-muted/30">
+            <div 
+              className="p-6 rounded-xl bg-muted/30 hover:bg-muted/40 transition-colors cursor-pointer"
+              onClick={() => handleValuePropView('resultados')}
+            >
               <h3 className="text-xl font-semibold mb-4">Resultados</h3>
               <p className="text-muted-foreground">
                 Nuestras soluciones ofrecen mejoras medibles en eficiencia y productividad.
@@ -147,6 +244,16 @@ export default function Home() {
           <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
             Hablemos sobre cómo podemos transformar tu negocio con automatización inteligente.
           </p>
+          <a 
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => handleWhatsAppClick('contact-section')}
+            className="group bg-primary text-white px-8 py-4 rounded-full font-medium inline-flex items-center gap-2 hover:bg-primary/90 transition-all"
+          >
+            Comenzar conversación
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </a>
         </div>
       </section>
 
@@ -155,7 +262,11 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center text-muted-foreground">
             <p>© 2022 AO AppsOwner Spa. All rights reserved.</p>
-            <a href="mailto:contacto@appsowner.com" className="text-primary hover:underline mt-2 inline-block">
+            <a 
+              href="mailto:contacto@appsowner.com" 
+              className="text-primary hover:underline mt-2 inline-block"
+              onClick={handleEmailClick}
+            >
               contacto@appsowner.com
             </a>
           </div>
