@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { ArrowRight, Brain, Cpu, Bot, Workflow, Mail, Sparkles, Book, X, Cookie, Shield, Eye } from "lucide-react";
+import ToolsSection from '../components/ui/ToolsSection'; // Ajusta la ruta según tu estructura
 
 // Declare umami globally
 declare global {
@@ -356,6 +357,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Tools Section - NUEVA SECCIÓN */}
+      <ToolsSection trackEvent={trackEvent} />
 
       {/* Why Choose Us Section */}
       <section className="py-32">
